@@ -204,20 +204,42 @@ const DragDropContainer = ({ initialItems = [] }) => {
         ml={isPanelVisible ? '300px' : '0'}
         transition="margin-left 0.3s ease"
       >
-        <Flex mb={4} alignItems="center">
-          <Button onClick={() => addItem('text')} m={2}>
+         <Flex
+          mb={4}
+          alignItems="center"
+          wrap={{ base: 'wrap', md: 'wrap' }}  
+          justify="center"
+          w={{ base: 'full', md: 'auto' }}  
+        >
+          <Button
+            onClick={() => addItem('text')}
+            m={2}
+            w={{ base: '45%', md: 'auto' }}  
+          >
             Add Text
           </Button>
-          <Button onClick={() => addItem('image')} m={2}>
+          <Button
+            onClick={() => addItem('image')}
+            m={2}
+            w={{ base: '45%', md: 'auto' }}  
+          >
             Add Image
           </Button>
-          <Button onClick={() => addItem('video')} m={2}>
+          <Button
+            onClick={() => addItem('video')}
+            m={2}
+            w={{ base: '45%', md: 'auto' }} 
+          >
             Add Video
           </Button>
-          <Button onClick={() => addItem('button')} m={2}>
+          <Button
+            onClick={() => addItem('button')}
+            m={2}
+            w={{ base: '45%', md: 'auto' }}  // Adjust width for smaller screens
+          >
             Add Button
           </Button>
-        </Flex>
+  </Flex>
         
         <Divider my={4} />
         <Flex>
