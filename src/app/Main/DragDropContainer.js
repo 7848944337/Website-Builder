@@ -201,6 +201,8 @@ const DragDropContainer = ({ initialItems = [] }) => {
         display="flex"
         flexDirection="column"
         alignItems="center"
+        ml={isPanelVisible ? '300px' : '0'}
+        transition="margin-left 0.3s ease"
       >
         <Flex mb={4} alignItems="center">
           <Button onClick={() => addItem('text')} m={2}>
@@ -275,6 +277,8 @@ const DragDropContainer = ({ initialItems = [] }) => {
         justifyContent="center"
         alignItems="center"
         boxShadow="sm"
+        ml={isPanelVisible ? '300px' : '0'}
+        transition="margin-left 0.3s ease"
       >
         {pages.map((page) => (
           <Flex key={page.id} alignItems="center">
