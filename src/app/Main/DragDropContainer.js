@@ -176,6 +176,7 @@ const DragDropContainer = ({ initialItems = [] }) => {
   // Undo and Redo functions
   const undo = () => {
     setSelectedItemId(null);
+    setIsPanelVisible(false)
     const lastState = undoStack.pop();
     if (lastState) {
       setRedoStack([...redoStack, { pages, currentPageId }]);
@@ -185,6 +186,7 @@ const DragDropContainer = ({ initialItems = [] }) => {
   };
   const redo = () => {
     setSelectedItemId(null);
+    setIsPanelVisible(false)
     const lastRedoState = redoStack.pop();
     if (lastRedoState) {
       setUndoStack([...undoStack, { pages, currentPageId }]);

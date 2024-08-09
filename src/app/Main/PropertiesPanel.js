@@ -32,16 +32,16 @@ const PropertiesPanel = ({ selectedItem, onClose, onUpdate }) => {
           variant="ghost"
         />
       </Flex>
-      {selectedItem.type === 'text' && (
+      {selectedItem?.type === 'text' && (
         <TextProperties selectedItem={selectedItem} onUpdate={onUpdate} />
       )}
-      {selectedItem.type === 'image' && (
+      {selectedItem?.type === 'image' && (
         <ImageProperties selectedItem={selectedItem} onUpdate={onUpdate} />
       )}
-      {selectedItem.type === 'video' && (
+      {selectedItem?.type === 'video' && (
         <VideoProperties selectedItem={selectedItem} onUpdate={onUpdate} />
       )}
-      {selectedItem.type === 'button' && (
+      {selectedItem?.type === 'button' && (
         <ButtonProperties selectedItem={selectedItem} onUpdate={onUpdate} />
       )}
     </Box>
