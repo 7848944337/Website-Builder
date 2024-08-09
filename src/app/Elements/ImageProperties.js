@@ -15,30 +15,19 @@ const ImageProperties = ({ selectedItem, onUpdate }) => {
     setImageHeight(selectedItem.height || 200);
   }, [selectedItem]);
 
-  const handleUpdate = () => {
+  const handleUpdate = (property, value) => {
     onUpdate({
       ...selectedItem,
-      src: imageSrc,
-      width: imageWidth,
-      height: imageHeight,
+      [property]: value,
     });
   };
 
   return (
     <>
-      <TextInput value={imageSrc} onChange={(e) => setImageSrc(e.target.value)} label="Image Source" type="url" placeholder="Enter image URL" />
-      {imageSrc && (
-        <Box mb={4}>
-          <AspectRatio ratio={imageWidth / imageHeight}>
-            <img src={imageSrc} alt="Preview" style={{ width: '100%', height: '100%' }} />
-          </AspectRatio>
-        </Box>
-      )}
-      <SliderControl value={imageWidth} onChange={(value) => setImageWidth(value)} min={50} max={1000} label="Image Width" />
-      <SliderControl value={imageHeight} onChange={(value) => setImageHeight(value)} min={50} max={1000} label="Image Height" />
-      <Flex justifyContent="flex-end">
-        <Button colorScheme="blue" mt={4} onClick={handleUpdate}>Apply</Button>
-      </Flex>
+      <TextInput value={imageSrc} onChange={(e) => {setImageSrc(e.target.value);  handleUpdate('src', e.target.value)}} label="Image Source" type="url" placeholder="Enter image URL" />
+      <SliderControl value={imageWidth} onChange={(value) => {setImageWidth(value);handleUpdate('width', value)}} min={50} max={1000} label="Image Width" />
+      <SliderControl value={imageHeight} onChange={(value) => {setImageHeight(value);handleUpdate('height', value)}} min={50} max={1000} label="Image Height" />
+     
     </>
   );
 };

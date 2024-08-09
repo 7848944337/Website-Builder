@@ -20,27 +20,21 @@ const ButtonProperties = ({ selectedItem, onUpdate }) => {
     setButtonTextColor(selectedItem.textColor || '#ffffff');
   }, [selectedItem]);
 
-  const handleUpdate = () => {
+  const handleUpdate = (property, value) => {
     onUpdate({
       ...selectedItem,
-      content: buttonContent,
-      width: buttonWidth,
-      height: buttonHeight,
-      color: buttonColor,
-      textColor: buttonTextColor,
+      [property]: value,
     });
   };
 
   return (
     <>
-      <TextInput value={buttonContent} onChange={(e) => setButtonContent(e.target.value)} label="Button Content" />
-      <SliderControl value={buttonWidth} onChange={(value) => setButtonWidth(value)} min={50} max={500} label="Button Width" />
-      <SliderControl value={buttonHeight} onChange={(value) => setButtonHeight(value)} min={20} max={200} label="Button Height" />
-      <ColorInput value={buttonColor} onChange={(e) => setButtonColor(e.target.value)} label="Button Background Color" />
-      <ColorInput value={buttonTextColor} onChange={(e) => setButtonTextColor(e.target.value)} label="Button Text Color" />
-      <Flex justifyContent="flex-end">
-        <Button colorScheme="blue" mt={4} onClick={handleUpdate}>Apply</Button>
-      </Flex>
+      <TextInput value={buttonContent} onChange={(e) => {setButtonContent(e.target.value);  handleUpdate('content', e.target.value)}} label="Button Content" />
+      <SliderControl value={buttonWidth} onChange={(value) =>{ setButtonWidth(value);  handleUpdate('width', value)}} min={50} max={500} label="Button Width" />
+      <SliderControl value={buttonHeight} onChange={(value) => {setButtonHeight(value);  handleUpdate('height', value)}} min={20} max={200} label="Button Height" />
+      <ColorInput value={buttonColor} onChange={(e) => {setButtonColor(e.target.value);  handleUpdate('color', e.target.value)}} label="Button Background Color" />
+      <ColorInput value={buttonTextColor} onChange={(e) => {setButtonTextColor(e.target.value);  handleUpdate('textColor', e.target.value)}} label="Button Text Color" />
+      
     </>
   );
 };

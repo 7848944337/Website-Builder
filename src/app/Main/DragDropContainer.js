@@ -26,6 +26,7 @@ const DragDropContainer = ({ initialItems = [] }) => {
   const [isPanelVisible, setIsPanelVisible] = useState(false);
   const [editingPageId, setEditingPageId] = useState(null);
   const [newPageName, setNewPageName] = useState('');
+  
 
   // Undo/Redo stacks
   const [undoStack, setUndoStack] = useState([]);
@@ -56,9 +57,11 @@ const DragDropContainer = ({ initialItems = [] }) => {
   }, [initialItems]);
 
   // Update the undo stack and clear the redo stack
-  const updateUndoRedoStacks = (newPages) => {
-    setUndoStack([...undoStack, pages]);
-    setRedoStack([]); // Clear redo stack on new action
+  const updateUndoRedoStacks = (newPages, isPageChange = false) => {
+    if (!isPageChange) {
+      setUndoStack([...undoStack, { pages, currentPageId }]);
+      setRedoStack([]); // Clear redo stack on new action
+    }
     setPages(newPages);
   };
 
@@ -172,23 +175,23 @@ const DragDropContainer = ({ initialItems = [] }) => {
 
   // Undo and Redo functions
   const undo = () => {
-    setSelectedItemId(null)
+    setSelectedItemId(null);
     const lastState = undoStack.pop();
     if (lastState) {
-      setRedoStack([...redoStack, pages]);
-      setPages(lastState);
+      setRedoStack([...redoStack, { pages, currentPageId }]);
+      setPages(lastState.pages);
+      setCurrentPageId(lastState.currentPageId);
     }
   };
-
   const redo = () => {
-    setSelectedItemId(null)
+    setSelectedItemId(null);
     const lastRedoState = redoStack.pop();
     if (lastRedoState) {
-      setUndoStack([...undoStack, pages]);
-      setPages(lastRedoState);
+      setUndoStack([...undoStack, { pages, currentPageId }]);
+      setPages(lastRedoState.pages);
+      setCurrentPageId(lastRedoState.currentPageId);
     }
   };
-
   return (
     <Flex direction="column" height="100vh">
       <Box
@@ -414,7 +417,7 @@ const DragDropContainer = ({ initialItems = [] }) => {
                   : page
               )
             );
-            setIsPanelVisible(false);
+            setIsPanelVisible(true);
           }}
         />
       )}

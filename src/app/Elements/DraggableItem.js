@@ -1,5 +1,5 @@
 import { useDrag, useDrop } from 'react-dnd';
-import { Box, Text, Image, Button } from "@chakra-ui/react";
+import { Box, Text, Image, Button } from '@chakra-ui/react';
 
 // Define ItemTypes within the same file
 const ItemTypes = {
@@ -34,14 +34,14 @@ const DraggableItem = ({ item, isSelected, onSelect, moveItem }) => {
         top: item.top,
         opacity: isDragging ? 1 : 1, // Ensure opacity is 1
       }}
-      cursor={isSelected ? "move" : "pointer"}
+      cursor={isSelected ? 'move' : 'pointer'}
       onClick={() => onSelect()}
     >
       {item.type === 'text' && (
         <Text
-          borderWidth={isSelected ? "1px" : "0"}
-          borderColor={isSelected ? "purple" : "transparent"}
-          borderStyle={isSelected ? "dotted" : "none"}
+          borderWidth={isSelected ? '1px' : '0'}
+          borderColor={isSelected ? 'purple' : 'transparent'}
+          borderStyle={isSelected ? 'dotted' : 'none'}
           color={item.color}
           fontFamily={item.font}
           fontSize={`${item.size}px`}
@@ -49,23 +49,23 @@ const DraggableItem = ({ item, isSelected, onSelect, moveItem }) => {
           {item.content}
         </Text>
       )}
-      {item.type === "image" && (
+      {item.type === 'image' && (
         <Image
-          borderWidth={isSelected ? "1px" : "0"}
-          borderColor={isSelected ? "purple" : "transparent"}
-          borderStyle={isSelected ? "dotted" : "none"}
+          borderWidth={isSelected ? '1px' : '0'}
+          borderColor={isSelected ? 'purple' : 'transparent'}
+          borderStyle={isSelected ? 'dotted' : 'none'}
           src={item.src}
-          alt="image"
-          objectFit="cover"
+          alt='image'
+          objectFit='cover'
           width={`${item.width}px`}
           height={`${item.height}px`}
         />
       )}
-      {item.type === "video" && (
+      {item.type === 'video' && (
         <video
-          borderWidth={isSelected ? "1px" : "0"}
-          borderColor={isSelected ? "purple" : "transparent"}
-          borderStyle={isSelected ? "dotted" : "none"}
+          borderWidth={isSelected ? '1px' : '0'}
+          borderColor={isSelected ? 'purple' : 'transparent'}
+          borderStyle={isSelected ? 'dotted' : 'none'}
           src={item.src}
           controls
           width={`${item.width}px`}
@@ -74,14 +74,14 @@ const DraggableItem = ({ item, isSelected, onSelect, moveItem }) => {
       )}
       {item.type === 'button' && (
         <Button
-          borderWidth={isSelected ? "1px" : "0"}
-          borderColor={isSelected ? "purple" : "transparent"}
-          borderStyle={isSelected ? "dotted" : "none"}
-          colorScheme="blue" // Disable default color scheme
+          borderWidth={isSelected ? '1px' : '0'}
+          borderColor={isSelected ? 'purple' : 'transparent'}
+          borderStyle={isSelected ? 'dotted' : 'none'}
+          colorScheme='blue' // Disable default color scheme
           bg={item.color}
           color={item.textColor}
           size={item.size}
-          textAlign="center"
+          textAlign='center'
           width={`${item.width}px`} // Apply width
           height={`${item.height}px`} // Apply height
           _hover={{ bg: `${item.color}cc` }} // Hover state color
